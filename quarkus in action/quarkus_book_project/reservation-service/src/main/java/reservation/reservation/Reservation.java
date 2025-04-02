@@ -1,0 +1,20 @@
+package reservation.reservation;
+
+import java.time.LocalDate;
+
+public class Reservation {
+    public Long id;
+    public Long carId;
+    public LocalDate startDay;
+    public LocalDate endDay;
+
+    /**
+     * Check if the given duration overlaps with this reservation
+     * @return true if the dates overlaps with the reservation, false
+     * otherwise
+     * */
+
+    public boolean isReserved(LocalDate startDay, LocalDate endDay) {
+        return (!(this.endDay.isBefore(startDay) || startDay.isAfter(endDay)));
+    };
+}
