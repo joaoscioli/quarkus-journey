@@ -1,8 +1,11 @@
 package reservation.inventory;
 
+import jakarta.inject.Singleton;
+
 import java.util.ArrayList;
 import java.util.List;
 
+@Singleton
 public class InMemoryInventoryClient implements InventoryClient {
 
     public static final List<Car> ALL_CARS = List.of(
