@@ -1,8 +1,6 @@
 package reservation.rest;
 
-import jakarta.ws.rs.*;
 import jakarta.ws.rs.core.MediaType;
-import org.jboss.logging.annotations.Pos;
 import org.jboss.resteasy.reactive.RestQuery;
 import reservation.inventory.Car;
 import reservation.inventory.InventoryClient;
@@ -47,11 +45,5 @@ public class ReservationResource {
             }
         }
         return carsByid.values();
-    }
-
-    @Consumes(MediaType.APPLICATION_JSON)
-    @POST
-    public Reservation make(Reservation reservation) {
-        return reservationsRepository.save(reservation);
     }
 }
