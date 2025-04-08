@@ -15,6 +15,6 @@ public class Reservation {
      * */
 
     public boolean isReserved(LocalDate startDay, LocalDate endDay) {
-        return (!(this.endDay.isBefore(startDay) || startDay.isAfter(endDay)));
+        return (!(this.endDay.isBefore(startDay) || this.startDay.isAfter(endDay)));
     };
 }
