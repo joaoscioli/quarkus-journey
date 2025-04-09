@@ -1,10 +1,13 @@
 package reservation.rest;
 
+import io.quarkus.logging.Log;
 import jakarta.ws.rs.*;
 import jakarta.ws.rs.core.MediaType;
 import org.jboss.resteasy.reactive.RestQuery;
 import reservation.inventory.Car;
 import reservation.inventory.InventoryClient;
+import reservation.rental.Rental;
+import reservation.rental.RentalClient;
 import reservation.reservation.Reservation;
 import reservation.reservation.ReservationsRepository;
 
@@ -20,10 +23,12 @@ public class ReservationResource {
 
     private final ReservationsRepository reservationsRepository;
     private final InventoryClient inventoryClient;
+    private final RentalClient rentalClient;
 
-    public ReservationResource(ReservationsRepository reservationsRepository, InventoryClient inventoryClient) {
+    public ReservationResource(ReservationsRepository reservationsRepository, InventoryClient inventoryClient, RentalClient rentalClient) {
         this.reservationsRepository = reservationsRepository;
         this.inventoryClient = inventoryClient;
+        this.rentalClient = rentalClient;
     }
 
     @GET
@@ -51,7 +56,15 @@ public class ReservationResource {
     @Consumes(MediaType.APPLICATION_JSON)
     @POST
     public Reservation make(Reservation reservation) {
-        return reservationsRepository.save(reservation);
+        Reservation result = reservationsRepository.save(reservation);
+        // This is just a dummy value for the time being
+        String userId = "x";
+
+        if (reservation.startDay.equals(LocalDate.now())) {
+            Rental rental = rentalClient.start(userId, result.id);
+            Log.info("Successfully started rental: " + rental);
+        }
+        return result;
     }
 
 }
