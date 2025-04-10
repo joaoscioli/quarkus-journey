@@ -1,0 +1,3 @@
+inventory\database\CarInventory.class
+inventory\service\GraphQLInventoryService.class
+inventory\model\Car.class

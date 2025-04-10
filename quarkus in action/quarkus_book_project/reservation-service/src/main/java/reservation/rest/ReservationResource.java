@@ -3,6 +3,7 @@ package reservation.rest;
 import io.quarkus.logging.Log;
 import jakarta.ws.rs.*;
 import jakarta.ws.rs.core.MediaType;
+import org.eclipse.microprofile.rest.client.inject.RestClient;
 import org.jboss.resteasy.reactive.RestQuery;
 import reservation.inventory.Car;
 import reservation.inventory.InventoryClient;
@@ -25,7 +26,7 @@ public class ReservationResource {
     private final InventoryClient inventoryClient;
     private final RentalClient rentalClient;
 
-    public ReservationResource(ReservationsRepository reservationsRepository, InventoryClient inventoryClient, RentalClient rentalClient) {
+    public ReservationResource(ReservationsRepository reservationsRepository, InventoryClient inventoryClient, @RestClient RentalClient rentalClient) {
         this.reservationsRepository = reservationsRepository;
         this.inventoryClient = inventoryClient;
         this.rentalClient = rentalClient;
