@@ -14,6 +14,7 @@ modern JVM backend development.
 **Repository type:** complementary framework lab  
 **Primary focus:** Quarkus and JVM backend experimentation  
 **Portfolio role:** secondary learning reference
+**Information:** This repository serves as a supplementary resource for exploring Quarkus and JVM backend development, complementing my primary portfolio focused on Java, Spring Boot, REST APIs, architecture, tests, documentation, and CI/CD.
 
 ## Evaluation Note
 
